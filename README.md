@@ -40,7 +40,7 @@ SysY 动态链接库 `sylib` 已经内置在 Docker 镜像中，位于 `/usr/sha
 
     ./docker-start.sh
 
-（注：可在该脚本中加入 `-v` 选项以将主机的代码目录挂载进 docker 容器中，例如 `-v /path/to/your/code:/root/sysy`）
+（注：如需将主机的代码目录挂载到容器内，可直接传入要挂载的主机目录，例如 `./docker-start.sh /path/to/your/code`）
 
 进入 docker 容器的 Shell:
 
