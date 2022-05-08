@@ -11,6 +11,7 @@ RUN apt-get update && \
     { apt-get install -y ${PACKAGES}; apt-get install -y --fix-missing ${PACKAGES}; }
 # Load sysy library
 ENV SYLIB_PATH=/usr/share/sylib
+ENV SYLIB_INCLUDE_FLAG="-I${SYLIB_PATH}"
 COPY sylib/* ${SYLIB_PATH}/
 RUN clang -emit-llvm -S ${SYLIB_PATH}/sylib.c -o ${SYLIB_PATH}/sylib.ll && \
     clang --target=${ARCH}-linux-gnu --sysroot=/usr/${ARCH}-linux-gnu -c ${SYLIB_PATH}/sylib.c -o ${SYLIB_PATH}/sylib.o && \
