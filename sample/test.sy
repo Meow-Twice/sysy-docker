@@ -1,0 +1,17 @@
+float testf(float a, float b) {
+    return a + b;
+}
+
+int main() {
+    // test float constant
+    float a = 1.1, b = 2.2;
+    float c = a * b;
+    // test putfloat
+    putfloat(c);
+    // test float array
+    int n = 5;
+    float farr[5] = {1.1, 2.2, 3.3, 4.4, 5.5};
+    // test put float array
+    putfarray(n, farr);
+    return 0;
+}

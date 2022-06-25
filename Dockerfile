@@ -24,3 +24,5 @@ COPY scripts/sysy* /usr/bin/
 RUN chmod +x /usr/bin/sysy*.sh
 
 WORKDIR /root
+# Copy Sample
+COPY sample/* /root/
