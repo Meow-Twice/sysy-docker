@@ -5,7 +5,7 @@ ENV CLANG_ARCH_FLAGS="--target=${ARCH_NAME} --sysroot=/usr/${ARCH_NAME} -m32"
 ENV CLANG_LINK_FLAGS="-fuse-ld=lld -static"
 # Install necessary software
 
-ARG PACKAGES="clang llvm lld gcc-${ARCH_NAME} binutils-${ARCH_NAME} gcc-multilib-${ARCH_NAME} qemu-system-${ARCH} qemu-user"
+ARG PACKAGES="vim clang llvm lld gcc-${ARCH_NAME} binutils-${ARCH_NAME} gcc-multilib-${ARCH_NAME} qemu-system-${ARCH} qemu-user"
 
 RUN sed -i "s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list
 
