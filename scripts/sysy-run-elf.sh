@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Run aarch64 ELF
+# Run ELF
 
 if ! [ $1 ]; then
     echo "please specify ELF file of ${ARCH} to run." > /dev/stderr

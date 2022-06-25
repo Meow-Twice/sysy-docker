@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Generate aarch64 assembly .S from .sy or .c
+# Generate arm assembly .S from .sy or .c
 
 if ! [ $1 ]; then
     echo "please specify code file." > /dev/stderr

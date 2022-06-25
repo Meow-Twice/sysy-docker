@@ -1,6 +1,6 @@
 # SysY in Docker
 
-编译竞赛 LLVM 及 ARM 编译/运行环境，基于 ubuntu 镜像构建，内置有 Clang, LLVM 编译器以及运行 ARM ELF 的 QEMU 模拟器。
+LLVM 及 ARM 编译/运行环境，基于 ubuntu 镜像构建，内置有 Clang, LLVM 编译器以及运行 ARM ELF 的 QEMU 模拟器。
 
 SysY 动态链接库 `sylib` 已经内置在 Docker 镜像中，位于 `/usr/share/sylib`。
 
