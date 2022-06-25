@@ -9,4 +9,4 @@ else
 fi
 
 
-docker run -dit --name=sysy --hostname=sysy --restart=always $MOUNT_OPTION sysy:latest /bin/bash
+docker run -it --rm --name=sysy --hostname=sysy $MOUNT_OPTION sysy:latest /bin/bash
