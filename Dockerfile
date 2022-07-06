@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 ENV ARCH=arm
-ENV ARCH_NAME="arm-linux-gnueabi"
+ENV ARCH_NAME="arm-linux-gnueabihf"
 ENV CLANG_ARCH_FLAGS="--target=${ARCH_NAME} --sysroot=/usr/${ARCH_NAME} -m32"
 ENV CLANG_LINK_FLAGS="-fuse-ld=lld -static"
 # Install necessary software
