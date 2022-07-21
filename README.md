@@ -43,3 +43,39 @@ SysY 动态链接库 `sylib` 已经内置在 Docker 镜像中，位于 `/usr/sha
 （注：如需将主机的代码目录挂载到容器内，可直接传入要挂载的主机目录，例如 `./docker-start.sh /path/to/your/code`，挂载到容器内的 `~/sysy` 目录中）
 
 在容器内可以使用 vim 编辑文件，如使用挂载目录方式则可直接在主机上编辑文件并在容器内编译及运行。
+
+## 使用 qemu 和 gdb 调试
+
+容器内安装了 `gdb-multiarch` 。这里使用 `qemu-user` 启动内置的 gdb server 并通过 `gdb-multiarch` 连接 qemu 进行调试。
+
+设待调试的 ARM ELF 文件为 `test.elf` ，使用以下命令进入调试：
+
+```shell
+# 使用 arm 架构 qemu-user 开启 gdb server 监听本地端口 8888，执行 test.elf
+qemu-arm -g 8888 test.elf &     # 该命令后的 & 非常关键，使 qemu 在后台执行，否则将阻塞终端且无法用 Ctrl+C 退出
+gdb-multiarch
+
+# 进入 gdb 后
+(gdb) file test.elf                   # 加载可执行程序
+(gdb) set architecture arm            # 设置体系结构为 arm
+(gdb) target remote localhost:8888    # 连接 qemu 监听的端口
+```
+
+完成上述命令后即可开始使用 gdb 调试。一些常用的 gdb 命令：
+
+- `b <target>` (`break <target>`) 设置断点，`<target>` 可以是函数或 label 名称，也可以是 `*` + PC 地址（例如 `b *0x00000`)
+- `i b` (`info breakpoints`) 查看已有断点
+- `disas` (`disassemble`) 反汇编，可用来查看当前执行到的指令及其前后指令
+- `i r` (`info registers`) 查看寄存器
+- `i vec` (`info vector`) 查看向量寄存器
+- `x <addr>` 查看内存地址的值
+- `ni` 执行下一条汇编指令 (不进入子函数)
+- `si` 执行下一条汇编指令 (进入子函数)
+- `c` 执行到下一断点
+
+通常用以下命令作为调试的开始：
+
+```
+(gdb) b main
+(gdb) c
+```

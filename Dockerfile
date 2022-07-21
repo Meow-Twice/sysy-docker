@@ -5,13 +5,13 @@ ENV CLANG_ARCH_FLAGS="--target=${ARCH_NAME} --sysroot=/usr/${ARCH_NAME} -m32"
 ENV CLANG_LINK_FLAGS="-fuse-ld=lld -static"
 # Install necessary software
 
-ARG PACKAGES="vim clang llvm lld gcc-${ARCH_NAME} binutils-${ARCH_NAME} gcc-multilib-${ARCH_NAME} qemu-system-${ARCH} qemu-user"
+ARG PACKAGES="vim clang llvm lld gcc-${ARCH_NAME} binutils-${ARCH_NAME} gcc-multilib-${ARCH_NAME} gdb-multiarch qemu-system-${ARCH} qemu-user"
 
 RUN sed -i "s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y tzdata && \
-    { apt-get install -y ${PACKAGES}; apt-get install -y --fix-missing ${PACKAGES}; }
+    apt-get install -y ${PACKAGES}
 # Load sysy library
 ENV SYLIB_PATH=/usr/share/sylib
 ENV SYLIB_INCLUDE_FLAG="-I${SYLIB_PATH}"
