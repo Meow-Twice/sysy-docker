@@ -23,4 +23,4 @@ else
     exit 1
 fi
 
-clang ${CLANG_ARCH_FLAGS} ${CLANG_LINK_FLAGS} ${SYLIB_INCLUDE_FLAG} -o $NAME.elf $SOURCE ${SYLIB_PATH}/sylib.a
+${ARCH_NAME}-gcc -march=armv7 --static ${SYLIB_INCLUDE_FLAG} -o $NAME.elf $SOURCE ${SYLIB_PATH}/sylib.a
