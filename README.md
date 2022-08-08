@@ -9,8 +9,12 @@ SysY 动态链接库 `sylib` 已经内置在 Docker 镜像中，位于 `/usr/sha
 本镜像内置了若干方便使用的脚本:
 
 - `sysy-llvm.sh`: 由 SysY 源代码生成 LLVM IR
-- `sysy-asm.sh`: 由 SysY 源代码生成 arm 汇编
-- `sysy-elf.sh`: 由汇编文件 `.S` 或源代码 (`.sy` 或 `.c`) 生成可执行的 ELF 文件
+- `sysy-asm.sh`: 由 SysY 源代码生成 arm 汇编 (交叉 gcc)
+- `sysy-asm-clang.sh`: 由 SysY 源代码生成 arm 汇编 (clang)
+- `sysy-asm-o2.sh`: 由 SysY 源代码生成 arm 汇编 (交叉 gcc 开启 O2)
+- `sysy-asm-clang-o2.sh`: 由 SysY 源代码生成 arm 汇编 (clang 开启 O2)
+- `sysy-elf.sh`: 由汇编文件 `.S` 或源代码 (`.sy` 或 `.c`) 生成可执行的 ELF 文件 (交叉 gcc)
+- `sysy-elf-clang.sh`: 由汇编文件 `.S` 或源代码 (`.sy` 或 `.c`) 生成可执行的 ELF 文件 (clang)
 - `sysy-run-llvm.sh`: 运行 SysY 源代码编译生成的 LLVM IR
 - `sysy-run-elf.sh`: 运行 ARM ELF 可执行文件
 
@@ -22,7 +26,11 @@ SysY 动态链接库 `sylib` 已经内置在 Docker 镜像中，位于 `/usr/sha
 | :---: | :---: | :---: |
 | `sysy-llvm.sh` | `.sy` 或 `.c` | `.ll` |
 | `sysy-asm.sh` | `.sy` 或 `.c` | `.S` |
+| `sysy-asm-clang.sh` | `.sy` 或 `.c` | `.S` |
+| `sysy-asm-o2.sh` | `.sy` 或 `.c` | `.S` |
+| `sysy-asm-clang-o2.sh` | `.sy` 或 `.c` | `.S` |
 | `sysy-elf.sh` | `.sy`, `.c` 或 `.S` | `.elf` |
+| `sysy-elf-clang.sh` | `.sy`, `.c` 或 `.S` | `.elf` |
 | `sysy-run-llvm.sh` | `.ll` | 无 |
 | `sysy-run-elf.sh` | `.elf` 或没有 | 无 |
 
