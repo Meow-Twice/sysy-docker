@@ -1,8 +1,7 @@
 FROM ubuntu:20.04
-ENV ARCH=arm
-ENV ARCH_NAME="arm-linux-gnueabihf"
-ENV CLANG_ARCH_FLAGS="--target=${ARCH_NAME} --sysroot=/usr/${ARCH_NAME} -m32"
-ENV CLANG_LINK_FLAGS="-fuse-ld=lld -static"
+ENV ARCH=mips
+ENV ARCH_NAME="${ARCH}-linux-gnu"
+
 # Install necessary software
 
 ARG PACKAGES="vim clang llvm lld gcc-${ARCH_NAME} binutils-${ARCH_NAME} gcc-multilib-${ARCH_NAME} gdb-multiarch qemu-system-${ARCH} qemu-user"
@@ -12,6 +11,12 @@ RUN sed -i "s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g" /etc/apt/source
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y tzdata && \
     apt-get install -y ${PACKAGES}
+
+# setup compile flags
+ENV CLANG_ARCH_FLAGS="--target=${ARCH_NAME} --sysroot=/usr/${ARCH_NAME} -m32"
+ENV CLANG_LINK_FLAGS="-fuse-ld=lld -static"
+ENV GCC_COMPILE_FLAGS="-march=mips32r5 -mgp32 -mno-branch-likely -mno-explicit-relocs -fno-stack-protector -mno-check-zero-division"
+
 # Load sysy library
 ENV SYLIB_PATH=/usr/share/sylib
 ENV SYLIB_INCLUDE_FLAG="-I${SYLIB_PATH}"

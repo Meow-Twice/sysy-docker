@@ -23,4 +23,4 @@ else
     exit 1
 fi
 
-${ARCH_NAME}-gcc -march=armv7-a --static ${SYLIB_INCLUDE_FLAG} -o $NAME.elf $SOURCE ${SYLIB_PATH}/sylib.a
+${ARCH_NAME}-gcc ${GCC_COMPILE_FLAGS} --static ${SYLIB_INCLUDE_FLAG} -o $NAME.elf $SOURCE ${SYLIB_PATH}/sylib.a

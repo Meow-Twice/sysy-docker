@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t "sysy:latest" .
+docker build -t "sysy:mips-latest" .

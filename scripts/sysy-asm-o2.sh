@@ -21,4 +21,4 @@ else
     exit 1
 fi
 
-${ARCH_NAME}-gcc -march=armv7-a ${SYLIB_INCLUDE_FLAG} -S -o $NAME.S $SOURCE -O2
+${ARCH_NAME}-gcc ${GCC_COMPILE_FLAGS} ${SYLIB_INCLUDE_FLAG} -S -o $NAME.S $SOURCE -O2
