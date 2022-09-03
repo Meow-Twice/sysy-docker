@@ -15,7 +15,7 @@ RUN apt-get update && \
 # setup compile flags
 ENV CLANG_ARCH_FLAGS="--target=${ARCH_NAME} --sysroot=/usr/${ARCH_NAME} -m32"
 ENV CLANG_LINK_FLAGS="-fuse-ld=lld -static"
-ENV GCC_COMPILE_FLAGS="-march=mips32r5 -mgp32 -mno-branch-likely -mno-explicit-relocs -fno-stack-protector -mno-check-zero-division"
+ENV GCC_COMPILE_FLAGS="-march=mips32r5 -mgp32 -fno-delayed-branch -mno-branch-likely -mno-explicit-relocs -fno-stack-protector -mno-check-zero-division"
 
 # Load sysy library
 ENV SYLIB_PATH=/usr/share/sylib
